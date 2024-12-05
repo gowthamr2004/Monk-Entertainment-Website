@@ -1,0 +1,84 @@
+/* styles.css */
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-color: #f3f4f6;
+    color: #333;
+}
+header {
+    background-color: #6200ea;
+    padding: 10px 20px;
+    color: white;
+    display: flex; /* Enables flexbox layout */
+    align-items: center; /* Ensures vertical alignment */
+    gap: 20px; /* Adds spacing between title and search bar */
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    text-align: center;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+header h1 {
+    margin: 0;
+    font-size: 30px;
+    white-space: nowrap; /* Prevents title from wrapping */
+}
+header h2{
+    margin: 0;
+    font-size: 20px;
+    white-space: nowrap; /* Prevents title from wrapping */
+    padding: 10px;
+}
+
+#searchBar {
+    padding: 10px;
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
+    outline: none;
+    width: 300px;
+}
+
+
+
+
+main {
+    padding: 20px;
+}
+
+#songs-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.song-card {
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    padding: 15px;
+    width: 200px;
+    text-align: center;
+}
+
+.song-card img {
+    width: 100%;
+    height: auto;
+    border-radius: 5px;
+}
+
+.song-card button {
+    margin-top: 10px;
+    background-color: #6200ea;
+    color: white;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+    border-radius: 5px;
+    font-size: 14px;
+}
+
+.song-card button:hover {
+    background-color: #b3007a;
+}
