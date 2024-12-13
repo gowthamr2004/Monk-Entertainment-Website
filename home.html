@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MONK ENTERTAINMENT</title>
+    <link rel="icon" href="logo.jpg">
+    <link rel="stylesheet" href="home.css">
+    <link rel="stylesheet" href="animations.css">
+    <meta name="google-site-verification" content="maYHLD6dolKeMqGWFTsDs5zb315Qqdq3bQ-DCZtCZU0" />
+    <meta name="msvalidate.01" content="A29658806A7C27D39F1AFEA302772B2A" />
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6329771380630154"
+     crossorigin="anonymous"></script>
+</head>
+<body>
+    <header>
+        <div class="header-content">
+            <h1>MONK ENTERTAINMENT</h1>
+            <p>Download all Your Favourite BGM & Ringtone & Songs HERE!!</p>
+            <input 
+                type="text" 
+                id="searchBar" 
+                placeholder="Search..." 
+                oninput="filterSongs()">
+        </div>
+        <!--Navigation with Dropdown-->
+        <nav>
+            <button class="options" onclick="navigateTo('bgm-ringtone.html')">BGM & Ringtone</button>
+            <button class="options" onclick="navigateTo('songs.html')">Songs</button>
+            <div class="dropdown">
+                <button class="nav-btn dropdown-toggle">Menu</button>
+                <div class="dropdown-menu">
+                    <a href="#" onclick="scrollToFooter()">About Us</a>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <main>
+        <h2>Latest & Trending!!</h2>
+        <section id="songs-container">
+            <!-- BGM & Ringtones will be dynamically loaded here -->
+        </section>
+        <a href="bgm-ringtone.html">
+            <p>For more BGM and Ringtones Download...</p>
+        </a>
+        <a href="songs.html">
+            <p>For more Songs Download...</p>
+        </a>
+        <a href="song-detail.html">
+            <p>Recently Visited</p>
+        </a>
+    </main>
+
+    <footer id="footer">
+        <div class="footer-content">
+            <h2>About Us🕵🏼‍♂️</h2>
+            <p>
+                Welcome to MONK ENTERTAINMENT!! 
+                We are your one-stop platform for downloading top-quality BGMs, Ringtones and Songs from your favorite artists and movies for free!!. Explore, enjoy, and customize your ringtone collection with ease!
+            </p>
+            <h3>Follow Us😇</h3>
+            <div class="social-media">
+                <a href="https://youtube.com/@monkentertainment1163?si=mgBuNW4s7zjFFLaG" target="_blank"><img src="youtube.png" alt="YouTube"></a>
+                <a href="https://www.instagram.com/monk_entertainment?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" target="_blank"><img src="instagram.png" alt="Instagram"></a>
+            </div>
+            <p>Designed @ MONK ENTERTAINMENT</p>
+        </div>
+    </footer>
+
+
+    
+    <!-- Rest of the existing home page content remains the same -->
+    
+    <script src="home.js"></script>
+    <script src="dropdown.js"></script>
+</body>
+</html>

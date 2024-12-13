@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Song Details</title>
+    <link rel="stylesheet" href="song-detail.css">
+    <meta name="google-site-verification" content="maYHLD6dolKeMqGWFTsDs5zb315Qqdq3bQ-DCZtCZU0" />
+    <meta name="msvalidate.01" content="A29658806A7C27D39F1AFEA302772B2A" />
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6329771380630154"
+     crossorigin="anonymous"></script>
+    <style>
+        /* Style for the progress bar */
+        .progress-bar {
+            width: 80%; /* Default width for mobile */
+            margin: 10px auto;
+            appearance: none;
+            height: 8px;
+            background-color: #ccc;
+            border-radius: 5px;
+            cursor: pointer;
+            display: block;
+        }
+
+        .progress-bar::-webkit-slider-thumb {
+            appearance: none;
+            width: 12px;
+            height: 12px;
+            background-color: #007bff;
+            border-radius: 50%;
+        }
+
+        .time-display {
+            display: flex;
+            justify-content: space-between;
+            font-size: 14px;
+            margin: 5px auto;
+            width: 80%; /* Default width for mobile */
+        }
+
+        @media (min-width: 768px) { /* For PC */
+            .progress-bar, .time-display {
+                width: 40%;
+            }
+        }
+        
+
+        body {
+        opacity: 0;
+        transition: opacity 0.8s ease-in-out; /* Smooth transition effect */
+    }
+    
+    body.fade-in {
+        opacity: 1;
+    }
+    
+    /* Optional: Fade-in for the song cards */
+    .song-card {
+        opacity: 0;
+        transform: translateY(20px);
+        animation: fadeInUp 0.6s ease-in-out forwards;
+    }
+    
+    @keyframes fadeInUp {
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+    html {
+    scroll-behavior: smooth; /* Enables smooth scrolling for anchors */
+}
+    </style>
+</head>
+<body>
+    <!-- Header Section -->
+    <header>
+        <div class="header-content">
+            <h1>MONK ENTERTAINMENT</h1>
+            <p>Listen and Download all Your Favourite Songs HERE!!</p>
+        </div>
+        <nav>
+            <button class="options" onclick="navigateTo('bgm-ringtone.html')">BGM & Ringtone</button>
+            <button class="options" onclick="navigateTo('songs.html')">Songs</button>
+            <button class="options" onclick="goBack()">Back</button>
+        </nav>
+    </header>
+
+    <!-- Main Content Section -->
+    <main>
+        <div class="song-detail-container">
+            <img id="songImg" src="" alt="Song Image">
+            <h2 id="songName"></h2>
+        
+
+            <!-- Timeline Progress Bar -->
+            <div class="time-display">
+                <span id="currentTime">0:00</span>
+                <span id="totalTime">0:00</span>
+            </div>
+            <input type="range" id="timeline" class="progress-bar" min="0" value="0" step="0.1">
+
+            <!-- Hidden Audio Element -->
+            <audio id="audioPlayer" preload="auto">
+                <source id="audioSource" src="" type="audio/mp3">
+            </audio>
+
+            <!-- Custom Play Button -->
+            <p class="play-btn" id="playButton">
+                <img id="playPauseIcon" src="play-icon.png" alt="Play Icon" style="width: 30px; height: 30px;">
+            </p>
+
+            <!-- Download Button -->
+            <button id="downloadBtn">Download</button>
+        </div>
+    </main>
+
+    <!-- Footer Section -->
+    <footer id="footer">
+        <div class="footer-content">
+            <h2>About Us🕵🏼‍♂️</h2>
+            <p>
+                Welcome to MONK ENTERTAINMENT!! 
+                We are your one-stop platform for downloading top-quality BGMs, Ringtones and Songs from your favorite artists and movies for free!!. Explore, enjoy, and customize your ringtone collection with ease!
+            </p>
+            <h3>Follow Us😇</h3>
+            <div class="social-media">
+                <a href="https://youtube.com/@monkentertainment1163?si=mgBuNW4s7zjFFLaG" target="_blank"><img src="youtube.png" alt="YouTube"></a>
+                <a href="https://www.instagram.com/monk_entertainment?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" target="_blank"><img src="instagram.png" alt="Instagram"></a>
+            </div>
+            <p>Designed @ MONK ENTERTAINMENT</p>
+        </div>
+    </footer>
+
+    <!-- Script Section -->
+    <script>
+        // Retrieve and Display Song Data from LocalStorage
+const song = JSON.parse(localStorage.getItem('selectedSong'));
+
+if (song) {
+    // Set Image and Name
+    document.getElementById('songImg').src = song.img;
+    document.getElementById('songName').textContent = song.name;
+
+    // Set Audio Source for Play Option
+    const audioSource = document.getElementById('audioSource');
+    audioSource.src = song.file;
+
+    // Wait for the source to load
+    const audioPlayer = document.getElementById('audioPlayer');
+    audioPlayer.load();
+
+    const timeline = document.getElementById('timeline');
+    const currentTimeDisplay = document.getElementById('currentTime');
+    const totalTimeDisplay = document.getElementById('totalTime');
+
+    // Play Button Logic
+    const playButton = document.getElementById('playButton');
+    const playPauseIcon = document.getElementById('playPauseIcon');
+    let isPlaying = false;
+
+    playButton.onclick = () => {
+        if (!isPlaying) {
+            audioPlayer.play();
+            playPauseIcon.src = "pause-icon.png";
+        } else {
+            audioPlayer.pause();
+            playPauseIcon.src = "play-icon.png";
+        }
+        isPlaying = !isPlaying;
+    };
+
+    // Update Timeline Position and Time Display as Song Plays
+    audioPlayer.addEventListener('timeupdate', () => {
+        timeline.value = audioPlayer.currentTime;
+        timeline.max = audioPlayer.duration;
+
+        // Format time display
+        currentTimeDisplay.textContent = formatTime(audioPlayer.currentTime);
+        totalTimeDisplay.textContent = formatTime(audioPlayer.duration);
+    });
+
+    // Seek Functionality
+    timeline.addEventListener('input', () => {
+        audioPlayer.currentTime = timeline.value;
+    });
+
+    // Ensure Playback Continues When Tab Is Inactive
+    document.addEventListener("visibilitychange", () => {
+        if (document.hidden && isPlaying) {
+            audioPlayer.play();
+        }
+    });
+
+    // Download Button Logic
+    document.getElementById('downloadBtn').onclick = () => downloadSong(song.file);
+} else {
+    alert("No song data available!");
+    goBack();
+}
+
+// Function to Format Time as Minutes:Seconds
+function formatTime(time) {
+    if (isNaN(time)) return "0:00";
+    const minutes = Math.floor(time / 60);
+    const seconds = Math.floor(time % 60).toString().padStart(2, '0');
+    return `${minutes}:${seconds}`;
+}
+
+// Function to Handle Song Download
+function downloadSong(file) {
+    const link = document.createElement('a');
+    link.href = file;
+    link.download = file;
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+}
+
+function navigateTo(page) {
+    document.body.style.transition = "opacity 0.5s ease-out";
+    document.body.style.opacity = 0; // Fade-out effect before navigation
+    setTimeout(() => {
+        window.location.href = page; // Delay navigation slightly
+    }, 500);
+}
+
+// Function to Go Back to Previous Page
+function goBack() {
+    window.history.back();
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+    // Apply the fade-in effect on page load
+    document.body.classList.add('fade-in');
+});
+    </script>
+</body>
+</html>

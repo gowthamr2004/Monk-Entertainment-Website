@@ -1,0 +1,136 @@
+/* Smooth Website Animations for Monk Entertainment */
+
+/* Global Smooth Scroll */
+html {
+    scroll-behavior: smooth;
+}
+
+/* Fade In Animation for Body */
+body {
+    opacity: 0;
+    animation: fadeIn 1s ease-in-out forwards;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+/* Header Animation */
+header {
+    transform: translateY(-50px);
+    opacity: 0;
+    animation: slideDownFade 1.2s ease-out forwards;
+}
+
+@keyframes slideDownFade {
+    from {
+        transform: translateY(-50px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+/* Search Bar Animation */
+#searchBar {
+    transition: all 0.3s ease-in-out;
+    box-shadow: 0 0 0 rgba(0, 0, 0, 0);
+}
+
+#searchBar:focus {
+    transform: scale(1.02);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Song Cards Staggered Animation */
+#songs-container .song-card {
+    opacity: 0;
+    transform: scale(0.9);
+    transition: all 0.5s ease-out;
+}
+
+#songs-container .song-card:nth-child(1) { animation: fadeInCard 0.7s ease-out 0.2s forwards; }
+#songs-container .song-card:nth-child(2) { animation: fadeInCard 0.7s ease-out 0.4s forwards; }
+#songs-container .song-card:nth-child(3) { animation: fadeInCard 0.7s ease-out 0.6s forwards; }
+#songs-container .song-card:nth-child(4) { animation: fadeInCard 0.7s ease-out 0.8s forwards; }
+#songs-container .song-card:nth-child(5) { animation: fadeInCard 0.7s ease-out 1s forwards; }
+#songs-container .song-card:nth-child(6) { animation: fadeInCard 0.7s ease-out 1.2s forwards; }
+#songs-container .song-card:nth-child(7) { animation: fadeInCard 0.7s ease-out 1.4s forwards; }
+#songs-container .song-card:nth-child(8) { animation: fadeInCard 0.7s ease-out 1.6s forwards; }
+#songs-container .song-card:nth-child(9) { animation: fadeInCard 0.7s ease-out 1.8s forwards; }
+#songs-container .song-card:nth-child(10) { animation: fadeInCard 0.7s ease-out 2s forwards; }
+
+@keyframes fadeInCard {
+    from {
+        opacity: 0;
+        transform: scale(0.9);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+/* Hover Effects for Song Cards */
+.song-card {
+    transition: all 0.3s ease-in-out;
+}
+
+.song-card:hover {
+    transform: scale(1.05);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+}
+
+/* Navigation Buttons Animation */
+.options, .nav-btn {
+    transition: all 0.3s ease-in-out;
+}
+
+.options:hover, .nav-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Footer Animation */
+footer {
+    opacity: 0;
+    animation: footerSlideUp 1s ease-out 1.5s forwards;
+}
+
+@keyframes footerSlideUp {
+    from {
+        opacity: 0;
+        transform: translateY(50px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Social Media Icons Animation */
+.social-media a {
+    display: inline-block;
+    transition: all 0.3s ease-in-out;
+}
+
+.social-media a:hover {
+    transform: scale(1.2) rotate(5deg);
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+    .song-card:hover {
+        transform: scale(1.02);
+    }
+}
+
+
+/* Prevent animations if no-animations class is present */
+.no-animations * {
+    animation: none !important;
+    transition: none !important;
+}

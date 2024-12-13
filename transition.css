@@ -1,0 +1,60 @@
+/* Smooth Transitions for Songs Page */
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    opacity: 0;
+    transition: opacity 0.5s ease-in-out;
+}
+
+body.page-loaded {
+    opacity: 1;
+}
+
+/* Header Subtle Slide */
+header {
+    transform: translateY(-20px);
+    opacity: 0;
+    transition: all 0.3s ease-out;
+}
+
+body.page-loaded header {
+    transform: translateY(0);
+    opacity: 1;
+}
+
+/* Songs Container Fade In */
+#songs-container {
+    opacity: 0;
+    transform: scale(0.97);
+    transition: all 0.3s ease-out 0.3s;
+}
+
+body.page-loaded #songs-container {
+    opacity: 1;
+    transform: scale(1);
+}
+
+/* Footer Subtle Rise */
+footer {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: all 0.3s ease-out 0.3s;
+}
+
+body.page-loaded footer {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Interactive Hover Effects */
+.options, .nav-btn {
+    transition: all 0.3s ease-in-out;
+}
+
+.options:hover, .nav-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
